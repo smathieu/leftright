@@ -7,12 +7,6 @@ require 'leftright/color'
 require 'leftright/runner'
 require 'leftright/autorun'
 
-# ffi-ncurses for jruby
-begin
-  require 'ffi-ncurses'
-rescue LoadError
-end
-
 module LeftRight
   # In counts of ' ':
   MID_SEPARATOR = 1
@@ -97,14 +91,16 @@ module LeftRight
   # Uses ffi-ncurses to determine terminal width
   #
   def self.ncurses_terminal_width
-    size = 0
-    FFI::NCurses.initscr
+    require 'ffi-ncurses' # a bit unorthodox here, I know.
+
     begin
-      size = FFI::NCurses.getmaxyx(FFI::NCurses._initscr).reverse.first
+      FFI::NCurses.initscr
+      FFI::NCurses.getmaxyx(FFI::NCurses._initscr).reverse.first
+    rescue
+      nil
     ensure
       FFI::NCurses.endwin
     end
-    size
   end
 
   # Tries to get the left side width in columns.
