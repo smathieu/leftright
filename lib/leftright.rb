@@ -86,15 +86,15 @@ module LeftRight
   # Tries to get the terminal width in columns.
   #
   def self.terminal_width
-    ssty_capable = system('stty size &> /dev/null')
-    if ssty_capable
-      @terminal_width ||= `stty size`.split[-1].to_i rescue 0
-    else
-      @terminal_width ||= self.ncurses_terminal_width
-    end
+    @terminal_width ||= ( stty_terminal_width || ncurses_terminal_width || 0 )
   end
 
-  # Uses ffi-ncurses to determine width without stty
+  # Uses stty to determine terminal width
+  def self.stty_terminal_width
+    `stty size`.split[-1].to_i rescue nil if system 'stty size &> /dev/null'
+  end
+
+  # Uses ffi-ncurses to determine terminal width
   #
   def self.ncurses_terminal_width
     size = 0
