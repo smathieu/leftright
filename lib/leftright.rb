@@ -91,16 +91,19 @@ module LeftRight
   # Uses ffi-ncurses to determine terminal width
   #
   def self.ncurses_terminal_width
-    require 'ffi-ncurses' # a bit unorthodox here, I know.
+    require 'ffi' # a bit unorthodox here, I know.
+    require 'ffi-ncurses'
 
     begin
       FFI::NCurses.initscr
-      FFI::NCurses.getmaxyx(FFI::NCurses._initscr).reverse.first
-    rescue
-      nil
+      FFI::NCurses.getmaxyx(FFI::NCurses._initscr).reverse.first.to_i
     ensure
       FFI::NCurses.endwin
     end
+  rescue LoadError
+    STDERR.puts %{ NOTE: If the formatting looks a little funny, you need to
+                   install the 'ffi' and 'ffi-ncurses' gems, since `stty` is
+                   not available. }.strip.gsub /\s+/, ' '
   end
 
   # Tries to get the left side width in columns.
