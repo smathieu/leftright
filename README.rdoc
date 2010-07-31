@@ -15,17 +15,7 @@ using the Ruby 1.9 + Rails 3 combo day to day.
 
 == Installation instructions
 
-From Rubyforge's gem server (might not be there):
-
   gem install leftright
-
-From Gemcutter:
-
-  gem install leftright --source http://gemcutter.org
-
-Both are the same, and are loaded the same way:
-
-  require 'leftright'
 
 If you're on JRuby, you'll need to install ffi-ncurses to format properly:
 
@@ -46,4 +36,4 @@ your own tests, specially if they fail. :)
 
 == Legal
 
-Copyright (c) 2009 Jordi Bunster, released under the MIT license
+Copyright (c) 2009, 2010 Jordi Bunster, released under the MIT license
