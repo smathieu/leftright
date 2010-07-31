@@ -4,25 +4,33 @@
 
 module LeftRight
   module C
-    if ::LeftRight::tty?
-      def self.color(args)
-        name, code = args.keys.first, args.values.first
+    def self.color(string = nil, code = nil)
+      return string unless ::LeftRight::tty?
+      string.nil? ? "\e[#{code}m" : "\e[#{code}m" + string + "\e[0m"
+    end
 
-        eval %' def self.#{name}(string = nil)
-          string.nil? ? "\e[#{code}m" : "\e[#{code}m" + string + "\e[0m"
-        end ', binding, __FILE__, __LINE__
-      end
+    def self.reset(string = nil)
+      color string, 0
+    end
 
-      color :red    => 31
-      color :green  => 32
-      color :yellow => 33
-      color :cyan   => 36
-      color :reset  => 0
-      color :bold   => 1
-    else
-      def self.method_missing(color, *args)
-        args.first.nil? ? '' : args.first
-      end
+    def self.bold(string = nil)
+      color string, 1
+    end
+
+    def self.red(string = nil)
+      color string, 31
+    end
+
+    def self.green(string = nil)
+      color string, 32
+    end
+
+    def self.yellow(string = nil)
+      color string, 33
+    end
+
+    def self.cyan(string = nil)
+      color string, 36
     end
   end
 end
