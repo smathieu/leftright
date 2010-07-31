@@ -1,3 +1,6 @@
+* 0.0.5 (2010-07-31):
+  - Fixed a ginormous bug when running under non-REE CRUBY. Yipes.
+
 * 0.0.4 (2010-07-31):
   - Ignoring certain testcases (like ActionController::IntegrationTest) when
     calculating the left margin. Does not break if Rails is not present.
