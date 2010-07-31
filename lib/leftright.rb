@@ -81,30 +81,37 @@ module LeftRight
   # Tries to get the terminal width in columns.
   #
   def self.terminal_width
-    @terminal_width ||= ( stty_terminal_width || ncurses_terminal_width || 0 )
+    @terminal_width ||= if RUBY_ENGINE.match 'jruby'
+      ncurses_terminal_width
+    else
+      stty_terminal_width
+    end
   end
 
   # Uses stty to determine terminal width
   def self.stty_terminal_width
-    `stty size`.split[-1].to_i rescue nil if system 'stty size &> /dev/null'
+    `stty size`.split[-1].to_i
+  rescue
+    0
   end
 
   # Uses ffi-ncurses to determine terminal width
   #
   def self.ncurses_terminal_width
-    require 'ffi' # a bit unorthodox here, I know.
     require 'ffi-ncurses'
 
     begin
       FFI::NCurses.initscr
       FFI::NCurses.getmaxyx(FFI::NCurses._initscr).reverse.first.to_i
+    rescue
+      0
     ensure
       FFI::NCurses.endwin
     end
   rescue LoadError
-    STDERR.puts %{ NOTE: If the formatting looks a little funny, you need to
-                   install the 'ffi-ncurses' gem (and possibly 'ffi' before),
-                   since `stty` is not available. }.strip.gsub /\s+/, ' '
+    puts %{ Under JRuby, you need to install the 'ffi-ncurses' gem,
+            since `stty` is not available. }.strip.gsub /\s+/, ' '
+    exit 1
   end
 
   # Tries to get the left side width in columns.
