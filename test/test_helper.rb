@@ -32,4 +32,28 @@ class Test::Unit::TestCase
 
     %x[#{cmd}]
   end
+
+  def assert_output(duck)
+    if duck.is_a? Regexp
+      assert_match duck, strip_color(suite_output)
+    else
+      assert strip_color(suite_output).include?(duck.to_s)
+    end
+  end
+
+  def assert_no_output(duck)
+    if duck.is_a? Regexp
+      assert_no_match duck, strip_color(suite_output)
+    else
+      assert ! strip_color(suite_output).include?(duck.to_s)
+    end
+  end
+
+  def strip_color(string)
+    string.gsub /\e\[(?:[34][0-7]|[0-9])?m/, '' # thanks again term/ansicolor
+  end
+
+  def debug_out!
+    File.open('debug.txt', 'w+') { |f| f << suite_output }
+  end
 end

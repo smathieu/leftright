@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/test_helper'
 
 class AllErrorTest < Test::Unit::TestCase
-  def setup
-    @@out ||= under_leftright_run <<-RUBY
+  def suite_output
+    @@_suite_output ||= under_leftright_run <<-RUBY
       class X < Test::Unit::TestCase
         def test_first_explosion
           raise 'Ka-boom! 0'
@@ -20,28 +20,28 @@ class AllErrorTest < Test::Unit::TestCase
   end
 
   def test_error_output
-    assert_match /X first_explosion/, @@out
-    assert_match /RuntimeError/, @@out
-    assert_match /Ka-boom! 0/, @@out
+    assert_output 'X first_explosion'
+    assert_output 'RuntimeError'
+    assert_output 'Ka-boom! 0'
   end
 
   def test_test_count
-    assert_match /3 tests/, @@out
+    assert_output '3 tests'
   end
 
   def test_skip_count
-    assert_match /2 skipped/, @@out
+    assert_output '2 skipped'
   end
 
   def test_error_count
-    assert_match /1 error/, @@out
+    assert_output '1 error'
   end
 
   def test_passed_count
-    assert_no_match /passed/, @@out
+    assert_no_output 'passed'
   end
 
   def test_failed_count
-    assert_no_match /failed/, @@out
+    assert_no_output 'failed'
   end
 end

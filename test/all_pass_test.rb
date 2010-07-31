@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/test_helper'
 
 class AllPassTest < Test::Unit::TestCase
-  def setup
-    @@out ||= under_leftright_run <<-RUBY
+  def suite_output
+    @@_suite_output ||=under_leftright_run <<-RUBY
       class X < Test::Unit::TestCase
         def test_0
           assert true
@@ -20,22 +20,22 @@ class AllPassTest < Test::Unit::TestCase
   end
 
   def test_sequential_dots
-    assert_match /X ...$/, @@out
+    assert_output /X ...$/
   end
 
   def test_test_count
-    assert_match /3 tests/, @@out
+    assert_output '3 tests'
   end
 
   def test_summary
-    assert_match /all passed/, @@out
+    assert_output 'all passed'
   end
 
   def test_error_count
-    assert_no_match /error/, @@out
+    assert_no_output 'error'
   end
 
   def test_failed_count
-    assert_no_match /failed/, @@out
+    assert_no_output 'failed'
   end
 end
