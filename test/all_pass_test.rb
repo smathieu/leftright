@@ -20,7 +20,6 @@ class AllPassTest < Test::Unit::TestCase
   end
 
   def test_sequential_dots
-    puts @@out
     assert_match /X ...$/, @@out
   end
 
