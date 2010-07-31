@@ -3,6 +3,7 @@ require 'test/unit/ui/console/testrunner'
 
 require 'leftright/version' # to open the module
 
+require 'leftright/tty'
 require 'leftright/color'
 require 'leftright/runner'
 require 'leftright/autorun'
@@ -139,7 +140,7 @@ module LeftRight
   # http://blog.macromates.com/2006/wrapping-text-with-regular-expressions/
   #
   def self.wrap(line)
-    return line unless STDOUT.tty?
+    return line unless tty?
     width = right_side_width - MID_SEPARATOR - RIGHT_MARGIN
     line.gsub /(.{1,#{width}})( +|$)\n?|(.{#{width}})/, "\\1\\3\n"
   end
@@ -190,7 +191,7 @@ module LeftRight
   # Returns a passing dot, aware of how many to print per-line.
   #
   def self.P
-    return '.' unless STDOUT.tty?
+    return '.' unless tty?
 
     state.dots += 1
 

@@ -4,7 +4,7 @@
 
 module LeftRight
   module C
-    if STDOUT.tty?
+    if ::LeftRight::tty?
       def self.color(args)
         name, code = args.keys.first, args.values.first
 

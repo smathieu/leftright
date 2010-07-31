@@ -26,6 +26,8 @@ Gem::Specification.new do |gem|
     lib/leftright/autorun.rb
     lib/leftright/color.rb
     lib/leftright/runner.rb
+    lib/leftright/tty.rb
     lib/leftright/version.rb
+    lib/leftright/force_tty.rb
   ]
 end

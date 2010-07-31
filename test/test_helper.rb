@@ -8,13 +8,17 @@ rescue LoadError
 end
 
 class Test::Unit::TestCase
-  def under_leftright_run(testcase_str)
+  def under_leftright_run(testcase_str, force_tty = true)
     tested_leftright_lib = File.expand_path(File.dirname(__FILE__) + '/../lib/')
     header = %{
       require 'test/unit'
       $:.unshift '#{tested_leftright_lib}'
       require 'leftright'
     }
+
+    header << %{
+      require 'leftright/force_tty'
+    } if force_tty # so we can test colors and shit
 
     testcase_str = header + "\n" + testcase_str
     testcase_str = testcase_str.split("\n").map { |l| l.strip }
