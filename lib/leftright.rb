@@ -102,8 +102,8 @@ module LeftRight
     end
   rescue LoadError
     STDERR.puts %{ NOTE: If the formatting looks a little funny, you need to
-                   install the 'ffi' and 'ffi-ncurses' gems, since `stty` is
-                   not available. }.strip.gsub /\s+/, ' '
+                   install the 'ffi-ncurses' gem (and possibly 'ffi' before),
+                   since `stty` is not available. }.strip.gsub /\s+/, ' '
   end
 
   # Tries to get the left side width in columns.
