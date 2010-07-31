@@ -20,9 +20,10 @@ class Test::Unit::TestCase
       require 'leftright/force_tty'
     } if force_tty # so we can test colors and shit
 
+    # For 'ffi-ncurses' under JRuby
     header << %{
       require 'rubygems'
-    } if RUBY_ENGINE.match('jruby') && defined?(::Gem) # 'ffi-ncurses'
+    } if defined?(RUBY_ENGINE) && RUBY_ENGINE.match('jruby') && defined?(::Gem)
 
     testcase_str = header + "\n" + testcase_str
     testcase_str = testcase_str.split("\n").map { |l| l.strip }

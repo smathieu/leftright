@@ -81,7 +81,7 @@ module LeftRight
   # Tries to get the terminal width in columns.
   #
   def self.terminal_width
-    @terminal_width ||= if RUBY_ENGINE.match 'jruby'
+    @terminal_width ||= if defined?(RUBY_ENGINE) && RUBY_ENGINE.match('jruby')
       ncurses_terminal_width
     else
       stty_terminal_width
