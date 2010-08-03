@@ -19,6 +19,8 @@ Gem::Specification.new do |gem|
     MIT-LICENSE
     README.rdoc
     WHATSNEW
+    bin
+    bin/lr
     leftright.gemspec
     lib
     lib/leftright.rb
@@ -30,4 +32,6 @@ Gem::Specification.new do |gem|
     lib/leftright/version.rb
     lib/leftright/force_tty.rb
   ]
+
+  gem.executables = 'lr'
 end

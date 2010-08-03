@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'leftright'
+require $0 = ARGV.first
