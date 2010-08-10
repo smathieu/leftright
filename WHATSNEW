@@ -1,3 +1,7 @@
+* Next release
+  - Fixed "leftright.rb:113: warning: parenthesize argument(s) for future 
+    version" in 1.8.6 (2007-03-13 patchlevel 0) and possibly other versions.
+
 * 0.0.6 (2010-08-02):
   - Added the 'lr' binary to run foreign test suites using leftright.
 

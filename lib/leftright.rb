@@ -110,7 +110,7 @@ module LeftRight
     end
   rescue LoadError
     puts %{ Under JRuby, you need to install the 'ffi-ncurses' gem,
-            since `stty` is not available. }.strip.gsub /\s+/, ' '
+            since `stty` is not available. }.strip.gsub(/\s+/, ' ')
     exit 1
   end
 
