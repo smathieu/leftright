@@ -5,8 +5,11 @@
 module LeftRight
   module C
     def self.color(string = nil, code = nil)
-      return string unless ::LeftRight::tty?
-      string.nil? ? "\e[#{code}m" : "\e[#{code}m" + string + "\e[0m"
+      if ::LeftRight::tty?
+        string.nil? ? "\e[#{code}m" : "\e[#{code}m" + string + "\e[0m"
+      else
+        string || ''
+      end
     end
 
     def self.reset(string = nil)
