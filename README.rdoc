@@ -7,6 +7,13 @@ green, exceptions yellow, and failures red. But then there's more:
   * It shows you the full text of failures and exceptions as they happen
   * It skips all remaining tests for a TestCase class if one fails
 
+This release was tested under:
+
+  * Rubinius 1.0.1
+  * REE 1.8.7
+  * MRI 1.8.6 and 1.8.7
+  * JRuby 1.4.0 and 1.5.2 (both in 1.8.7 mode)
+
 == Dependencies
 
 Right now this is pretty heavily dependent on Test::Unit, so it won't work
