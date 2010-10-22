@@ -50,21 +50,21 @@ module LeftRight
         # If we're here, we need to print a new class name on the left side
         lr.state.last_class_printed = lr.state.class
         lr.state.dots = 0
-        @io.write "\n"
-        @io.write lr.justify_left_side(
+        io.write "\n"
+        io.write lr.justify_left_side(
                     lr.format_class_name(lr.state.class.name))
       elsif captured != '.'
         # This handles the edge case when the first test for a class fails
-        @io.write "\n"
-        @io.write lr.justify_left_side
+        io.write "\n"
+        io.write lr.justify_left_side
       end
 
       # Justify all lines but first:
       output.gsub! "\n", "\n" + lr.justify_left_side
 
-      @io.write output
+      io.write output
     ensure # reset all of the nasty state stuff
-      @io.flush
+      io.flush
       lr.state.previous_failed = captured != '.'
       lr.state.skip            = false
     end
@@ -102,12 +102,16 @@ module LeftRight
         results << lr::C.yellow("#{total[:errors]} #{plural}")
       end
 
-      @io.write "\n"
-      @io.write "\n" unless lr.state.previous_failed
-      @io.write "#{total[:tests]} test#{'s' if @result.run_count > 1}: "
-      @io.write results.join(', ').reverse.sub(',', 'dna ').reverse # :(
-      @io.write "\n" + "\n"
-      @io.puts "(#{elapsed_time} seconds)"
+      io.write "\n"
+      io.write "\n" unless lr.state.previous_failed
+      io.write "#{total[:tests]} test#{'s' if @result.run_count > 1}: "
+      io.write results.join(', ').reverse.sub(',', 'dna ').reverse # :(
+      io.write "\n" + "\n"
+      io.puts "(#{elapsed_time} seconds)"
+    end
+
+    def io
+      @io || @output || STDOUT
     end
   end
 end

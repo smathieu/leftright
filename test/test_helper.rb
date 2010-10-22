@@ -13,7 +13,7 @@ class Test::Unit::TestCase
     header = %{
       require 'test/unit'
       $:.unshift '#{tested_leftright_lib}'
-      require 'leftright'
+      require '#{tested_leftright_lib}/leftright'
     }
 
     header << %{
@@ -51,7 +51,7 @@ class Test::Unit::TestCase
   end
 
   def strip_color(string)
-    string.gsub /\e\[(?:[34][0-7]|[0-9])?m/, '' # thanks again term/ansicolor
+    string.gsub(/\e\[(?:[34][0-7]|[0-9])?m/, '') # thanks again term/ansicolor
   end
 
   def debug_out!

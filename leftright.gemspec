@@ -1,4 +1,4 @@
-require 'lib/leftright/version'
+require File.join(File.dirname(__FILE__), 'lib/leftright/version')
 
 Gem::Specification.new do |gem|
   gem.name    = 'leftright'
@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.description = %{ leftright is kind of like the redgreen gem. It makes
     passing tests look green, exceptions yellow, and failures red. It also
     has a few features that make your workflow a bit faster (see README).
-  }.strip!.gsub! /\s+/, ' '
+  }.strip.gsub(/\s+/, ' ')
 
   gem.has_rdoc = false
 
