@@ -1,3 +1,4 @@
+gem 'test-unit' if RUBY_VERSION > '1.9'
 require 'test/unit'
 require 'rake'
 
@@ -11,6 +12,7 @@ class Test::Unit::TestCase
   def under_leftright_run(testcase_str, force_tty = true)
     tested_leftright_lib = File.expand_path(File.dirname(__FILE__) + '/../lib/')
     header = %{
+      gem 'test-unit' if RUBY_VERSION > '1.9'
       require 'test/unit'
       $:.unshift '#{tested_leftright_lib}'
       require '#{tested_leftright_lib}/leftright'
