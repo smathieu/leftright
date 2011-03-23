@@ -8,6 +8,16 @@ rescue LoadError
   puts "Install the 'leftright' gem for sweet output"
 end
 
+puts
+puts "  LeftRight #{LeftRight::VERSION} (from #{LeftRight::LOCATION})"
+puts
+
+if defined? JRUBY_VERSION
+  puts "  Using JRuby #{JRUBY_VERSION} (in #{RUBY_VERSION} mode)"
+else
+  puts "  Using Ruby #{RUBY_VERSION}"
+end
+
 class Test::Unit::TestCase
   def under_leftright_run(testcase_str, force_tty = true)
     tested_leftright_lib = File.expand_path(File.dirname(__FILE__) + '/../lib/')
