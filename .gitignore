@@ -1,2 +1,2 @@
-leftright-*.gem
+pkg/*
 Gemfile.lock
