@@ -140,7 +140,7 @@ module LeftRight
   # Test::Unit Failure or Error. They look like test_method_name(TestCase),
   #
   def self.extract_class_name(test_name)
-    test_name.scan(/\(([^(|)]+)\)/x).flatten.last
+    test_name.to_s.scan(/\(([^(|)]+)\)/x).flatten.last
   end
 
   # Wraps the given lines at word boundaries. Ripped right out of
