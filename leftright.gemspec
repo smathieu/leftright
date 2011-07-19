@@ -34,4 +34,6 @@ Gem::Specification.new do |gem|
   ]
 
   gem.executables = 'lr'
+
+  gem.add_development_dependency 'rake'
 end
