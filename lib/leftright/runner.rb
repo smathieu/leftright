@@ -1,6 +1,16 @@
 # This is the replacement for Test::Unit::UI::Console::TestRunner
 
 module LeftRight
+  IGNORE_SUITES = ['ActionController::IntegrationTest',
+    'ActionController::TestCase',
+    'ActionMailer::TestCase',
+    'ActionView::TestCase',
+    'ActiveRecord::TestCase',
+    'ActiveSupport::TestCase']
+
+  SUCCESS_RUN_TIME = 1.0
+  WARNING_RUN_TIME = 10.0
+
   class Runner < Test::Unit::UI::Console::TestRunner
     # Access to the LeftRight module from the Runner instance. Hopefully to
     # reduce the likelyhood of future name clashes.
@@ -17,6 +27,31 @@ module LeftRight
 
       super
     end
+
+    def test_suite_started(suite)
+      @suite_started_at = Time.now
+      super suite
+    end
+
+    def test_suite_finished(suite)
+      if @suite_started_at && !suite.strip.empty? && !IGNORE_SUITES.include?(suite)
+        time = Time.now - @suite_started_at
+        time_s = sprintf("%.3f", time)
+        text_color = if time <= SUCCESS_RUN_TIME
+                   Test::Unit::Color.new("green", :foreground => true)
+                 elsif time <= WARNING_RUN_TIME
+                   Test::Unit::Color.new("yellow", :foreground => true)
+                 else
+                   Test::Unit::Color.new("red", :foreground => true)
+                 end
+        text = " #{text_color.escape_sequence}(#{time_s} s)#{@reset_color.escape_sequence}"
+        io.write(text) 
+        io.flush
+        @suite_started_at = nil
+      end
+      super suite
+    end
+    
 
     # We intercept this to be able to set some pertinent state, as well as
     # change all remaining test methods in the current class to just skip,
