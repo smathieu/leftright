@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+E	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.E$/;"	F	class:left_side_width
+F	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.F(color = C.red)$/;"	F	class:left_side_width
+LeftRight	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^module LeftRight$/;"	m
+P	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.P$/;"	F	class:left_side_width
+extract_class_name	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.extract_class_name(test_name)$/;"	F	class:left_side_width
+format_class_name	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.format_class_name(class_name)$/;"	F	class:LeftRight
+justify_left_side	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.justify_left_side(str = '')$/;"	F	class:left_side_width
+left_side_width	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.left_side_width$/;"	F
+ncurses_terminal_width	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.ncurses_terminal_width$/;"	F
+right_side_width	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.right_side_width$/;"	F	class:left_side_width
+skip_testing_class	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.skip_testing_class(klass)$/;"	F	class:LeftRight
+state	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.state$/;"	F	class:LeftRight
+stty_terminal_width	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.stty_terminal_width$/;"	F
+terminal_width	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.terminal_width$/;"	F	class:LeftRight
+testcase_classes	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.testcase_classes$/;"	F	class:LeftRight
+wrap	/Users/simon/Documents/code/leftright/lib/leftright.rb	/^  def self.wrap(line)$/;"	F	class:left_side_width
