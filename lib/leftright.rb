@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'test/unit/ui/console/testrunner'
 
-require 'leftright/version' unless defined? LeftRight::Version # to open the module
+require 'leftright/version' unless defined? LeftRight::VERSION # to open the module
 
 require 'leftright/tty'
 require 'leftright/color'
